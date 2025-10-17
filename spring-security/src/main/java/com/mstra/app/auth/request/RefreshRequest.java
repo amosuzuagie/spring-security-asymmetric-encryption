@@ -1,5 +1,6 @@
 package com.mstra.app.auth.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter
@@ -8,5 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RefreshRequest {
-  private String refreshToken;
+    @NotBlank(message = "VALIDATION.REFRESH.TOKEN.NOT_BLANK")
+    private String refreshToken;
 }

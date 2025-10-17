@@ -18,7 +18,7 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+@Table(name = "roles")
 @EntityListeners(AuditingEntityListener.class)
 public class Role extends BaseEntity {
     private String name;

@@ -23,6 +23,6 @@ public class BeansConfig {
 
     @Bean
     public AuditorAware<String> auditorAware() {
-        return new ApplicationAuditingAware();
+        return new ApplicationAuditorAware();
     }
 }

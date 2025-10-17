@@ -6,6 +6,7 @@ import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class KeyUtils {
@@ -15,7 +16,7 @@ public class KeyUtils {
         final String key = readKeyFromResources(pemPath)
                 .replace("-----BEGIN PRIVATE KEY-----", "")
                 .replace("-----END PRIVATE KEY-----", "")
-                .replace("\\s+", "");
+                .replaceAll("\\s+", "");
 
         final byte[] decoded = Base64.getDecoder().decode(key);
         final PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(decoded);
@@ -26,15 +27,15 @@ public class KeyUtils {
         final String key = readKeyFromResources(pemPath)
                 .replace("-----BEGIN PUBLIC KEY-----", "")
                 .replace("-----END PUBLIC KEY-----", "")
-                .replace("\\s+", "");
+                .replaceAll("\\s+", "");
 
         final byte[] decoded = Base64.getDecoder().decode(key);
-        final PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(decoded);
+        final X509EncodedKeySpec spec = new X509EncodedKeySpec(decoded);
         return KeyFactory.getInstance("RSA").generatePublic(spec);
     }
 
     private static String readKeyFromResources(final String pemPath) throws Exception {
-        try(final InputStream inputStream = KeyUtils.class.getResourceAsStream(pemPath)) {
+        try(final InputStream inputStream = KeyUtils.class.getClassLoader().getResourceAsStream(pemPath)) {
             if (inputStream == null) {
                 throw new IllegalArgumentException(String.format("Could not found key file %s", pemPath));
             }

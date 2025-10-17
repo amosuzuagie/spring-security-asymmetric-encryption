@@ -90,14 +90,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     private void checkUserEmail(String email) {
-        final boolean emailExists = this.userRepository.existByEmailIgnoreCase(email);
+        final boolean emailExists = this.userRepository.existsByEmailIgnoreCase(email);
         if (emailExists) {
             throw new BusinessException(ErrorCode.EMAIL_ALREADY_EXISTS);
         }
     }
 
     private void checkUserPhoneNumber(String phoneNumber) {
-        final boolean phoneNumberExists = this.userRepository.existByPhoneNumber(phoneNumber);
+        final boolean phoneNumberExists = this.userRepository.existsByPhoneNumber(phoneNumber);
         if (phoneNumberExists) {
             throw new BusinessException(ErrorCode.PHONE_NUMBER_ALREADY_EXISTS);
         }

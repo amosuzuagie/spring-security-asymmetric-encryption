@@ -2,6 +2,7 @@ package com.mstra.app.user;
 
 
 import com.mstra.app.role.Role;
+import com.mstra.app.todo.Todo;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -82,6 +83,9 @@ public class User implements UserDetails {
             inverseJoinColumns = {@JoinColumn(name = "roles_id")}
     )
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private List<Todo> todos;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

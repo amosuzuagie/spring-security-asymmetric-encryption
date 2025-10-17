@@ -15,21 +15,21 @@ import lombok.*;
 @AllArgsConstructor
 public class RegistrationRequest {
     @NotBlank(message = "VALIDATION.REGISTRATION.FIRSTNAME.NOT_BLANK")
-    @Size(min = 5, max = 50, message = "VALIDATION.REGISTRATION.FIRSTNAME.SIZE")
+    @Size(min = 3, max = 50, message = "VALIDATION.REGISTRATION.FIRSTNAME.SIZE")
     @Pattern(regexp = "^\\p{Lu}[\\p{L}' -]*$", message = "VALIDATION.REGISTRATION.FIRSTNAME.PATTERN")
-    @Schema(example = "Amos")
+    @Schema(example = "John")
     private String firstName;
 
     @NotBlank(message = "VALIDATION.REGISTRATION.LASTNAME.NOT_BLANK")
-    @Size(min = 5, max = 50, message = "VALIDATION.REGISTRATION.LASTNAME.SIZE")
+    @Size(min = 3, max = 50, message = "VALIDATION.REGISTRATION.LASTNAME.SIZE")
     @Pattern(regexp = "^\\p{Lu}[\\p{L}' -]*$", message = "VALIDATION.REGISTRATION.LASTNAME.PATTERN")
-    @Schema(example = "Amos")
+    @Schema(example = "Doe")
     private String lastName;
 
     @NotBlank(message = "VALIDATION.REGISTRATION.EMAIL.NOT_BLANK")
     @Email(message = "VALIDATION.REGISTRATION.EMAIL.FORMAT")
     @NonDisposableEmail(message = "VALIDATION.REGISTRATION.EMAIL.DISPOSABLE")
-    @Schema(example = "amos@gmail.com")
+    @Schema(example = "johndoe@gmail.com")
     private String email;
 
     @NotBlank(message = "VALIDATION.REGISTRATION.PHONE.NOT_BLANK")
@@ -40,11 +40,11 @@ public class RegistrationRequest {
     @NotBlank(message = "VALIDATION.REGISTRATION.PASSWORD.NOT_BLANK")
     @Size(min = 8, max = 50, message = "VALIDATION.REGISTRATION.PASSWORD.SIZE")
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.\\w).*", message = "VALIDATION.REGISTRATION.PASSWORD.WEEK")
-    @Schema(example = "<PASSWORD>")
+    @Schema(example = "PassW0rd#")
     private String password;
 
     @NotBlank(message = "VALIDATION.REGISTRATION.PASSWORD.NOT_BLANK")
     @Size(min = 8, max = 50, message = "VALIDATION.REGISTRATION.PASSWORD.SIZE")
-    @Schema(example = "<PASSWORD>")
+    @Schema(example = "PassW0rd#")
     private String confirmPassword;
 }
